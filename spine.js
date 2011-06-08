@@ -162,10 +162,11 @@
     },
 
     extend: function(obj){
-      for(var key in obj)
-        if (moduleKeywords.indexOf(key) === -1)
-          this[key] = obj[key];
-      
+      var propNames = Object.getOwnPropertyNames(obj);
+      for(var key in propNames)
+        if (moduleKeywords.indexOf(propNames[key]) == -1)
+          this[propNames[key]] = obj[propNames[key]];
+          
       var extended = obj.extended;
       if (extended) extended.apply(this);
       return this;
